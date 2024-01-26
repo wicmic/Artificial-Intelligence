@@ -1,0 +1,84 @@
+Einrichten des Repositories ausgehend von einem lokalen Rechner
+---------------------------------------------------------------
+1. Projekt auf Gilab anlegen
+2. Auf einem Rechner, der die Dateien enthält, im Verzeichnis aufrufen:
+git init
+git remote add origin https://gitlab.dhbw-heidenheim.de/assfalg/ML-Material.git
+git add *
+git commit
+...mit Kommentar...
+git push --set-upstream origin master
+3. Auf dem Server: Merge Request, um die Dateien vom Master in Main zu bekommen.
+
+
+Neuen lokalen Rechner einrichten: Holen aller Dateien vom Server auf den lokalen Rechner
+----------------------------------------------------------------------------------------
+1. git init
+2. git remote add origin https://gitlab.dhbw-heidenheim.de/assfalg/ML-Material.git
+3. git pull origin master
+
+
+Holen von Änderungen vom Server auf den lokalen Rechner
+-------------------------------------------------------
+1. git checkout master
+2. git pull
+
+
+Lokale Änderungen auf den Server übertragen
+-------------------------------------------
+1. git add -u
+falls Dateien umbenannt wurden, müssen diese neu hinzugefügt werden:
+1. git add --interactive
+...mit 4. Dateien auswählen (z.B. 1-5) 
+Dann commiten und pushen  
+2. git commit -a -m "Kap 2. Beispiel modifiziert"
+3. git push --set-upstream origin master
+
+
+Neuer 2. Rechner hat auch Dateien, die mit dem Repository vereint werden sollen
+-------------------------------------------------------------------------------
+1. git init
+2. git remote add origin https://gitlab.dhbw-heidenheim.de/assfalg/ML-Material.git
+3. git branch pcversion
+4. git checkout pcversion
+5. git add * 
+6. git commit -a -m "Alle Dateien auf pcbranch hinzugefügt"
+7. git push --set-upstream origin pcversion
+8. Auf dem Server den Branch pcversion mit master mergen: Merge request pcversion to master.
+
+Einen Branch (master) mit einem anderen Branch (mydev) überschreiben
+--------------------------------------------------------------------
+1. git chekcout master
+2. git reset --hard origin/mydev
+3. git push -f
+
+Lokale Änderungen komplett rückgängig machen und auf den letzten commit/push zurückführen
+-----------------------------------------------------------------------------------------
+1. git reset --hard master
+
+
+Konfliktfall: Ein push endet mit einem Fehler
+---------------------------------------------
+1. git pull origin master
+...dies führt zu einem automatischen Merge mit "<<<<<" bzw. ">>>>>"-Markierungen.
+2. ...Bereinigen von Hand...
+3. git add -u 
+4. git commit -m "Manueller Merge..."
+5. git push origin master 
+
+
+Arbeiten mit Jupyterlab-Git
+---------------------------
+Installation
+1. pip install --upgrade jupyterlab
+2. pip install --upgrade jupyterlab-git
+
+Änderungen auf Server übertragen
+1. Bei Änderungen das GIT-Icon (ganz links) klicken: Über "Changes" Commit ausführen
+2. Menü: "Git"->Push to Remote
+
+Änderungen vom Server holen
+1. Menü: "Git"->Pull from Remote
+2. GIT-Icon (ganz links) klicken: Über "History" können Commits eingesehen/verglichen werden.
+
+------------------------------- ENDE -------------------------------
